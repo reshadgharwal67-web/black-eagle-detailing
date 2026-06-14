@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Black Eagle Detailing Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --gold:#c9a227;
+      --gold-dark:#a98312;
+      --ink:#111318;
+      --muted:#626975;
+      --navy:#0f2742;
+      --line:#e8e9ed;
+      --soft:#f7f6f2;
+      --white:#fff;
+      --shadow:0 18px 55px rgba(17,19,24,.08);
+      --shadow2:0 26px 75px rgba(17,19,24,.12);
+      --radius:24px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,system-ui,sans-serif;background:#fff;color:var(--ink);overflow-x:hidden;line-height:1.6;padding-bottom:86px}
+    a{text-decoration:none;color:inherit}
+    button,input,select,textarea{font:inherit}
+    .loader{position:fixed;inset:0;background:#fff;z-index:9999;display:grid;place-items:center;transition:opacity .7s ease,visibility .7s ease}
+    .loader.hide{opacity:0;visibility:hidden}
+    .loader-card{text-align:center;width:min(440px,90vw)}
+    .loader svg{width:92px;height:92px;fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:460;stroke-dashoffset:460;animation:draw 2s ease forwards, glow 2s ease-in-out infinite alternate}
+    .loader h1{font-family:Cinzel,serif;font-size:clamp(1.35rem,4vw,2rem);margin-top:22px;letter-spacing:.03em;color:var(--ink);opacity:0;animation:fadeUp .8s .5s forwards}
+    .loader p{color:var(--gold);font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:.72rem;margin-top:8px;opacity:0;animation:fadeUp .8s .75s forwards}
+    .progress{height:3px;background:#eee;border-radius:50px;overflow:hidden;margin:28px auto 0;width:78%}
+    .progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#d8bb5b,var(--gold),#fff2b5);animation:loadbar 2.45s ease forwards}
+    @keyframes draw{to{stroke-dashoffset:0}}@keyframes glow{to{filter:drop-shadow(0 0 14px rgba(201,162,39,.5))}}@keyframes loadbar{to{width:100%}}@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+    .navbar{position:fixed;top:0;left:0;right:0;height:78px;z-index:80;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.72);backdrop-filter:blur(18px);border-bottom:1px solid rgba(232,233,237,.72);transition:.25s}
+    .nav-inner{width:min(1180px,92vw);display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-family:Cinzel,serif;font-weight:800;color:var(--ink);font-size:1.12rem;letter-spacing:.04em}.brand svg{width:34px;height:34px;color:var(--gold)}
+    .nav-links{display:flex;gap:28px;color:#333b48;font-size:.92rem;font-weight:700}.nav-links a:hover{color:var(--gold)}
+    .btn{border:0;border-radius:999px;padding:14px 22px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.25s;position:relative;overflow:hidden;min-height:48px}
+    .btn-gold{background:linear-gradient(135deg,var(--gold),#dfbf58);color:#141414;box-shadow:0 12px 28px rgba(201,162,39,.25)}
+    .btn-gold:before{content:"";position:absolute;inset:-40% auto -40% -70%;width:45%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);transform:skewX(-22deg);transition:.55s}.btn-gold:hover:before{left:125%}.btn:hover{transform:translateY(-2px)}
+    .btn-ghost{background:white;border:1px solid var(--line);color:var(--ink);box-shadow:0 10px 24px rgba(17,19,24,.05)}
+    .hamb{display:none;background:white;border:1px solid var(--line);border-radius:14px;padding:10px;cursor:pointer}.hamb span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0}
+    .mobile-menu{position:fixed;top:0;right:-310px;width:300px;height:100vh;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);z-index:90;box-shadow:-18px 0 50px rgba(0,0,0,.12);padding:30px;transition:.35s}.mobile-menu.open{right:0}.mobile-menu a{display:block;padding:16px 0;border-bottom:1px solid var(--line);font-weight:800}.close{float:right;border:0;background:var(--soft);width:42px;height:42px;border-radius:50%;font-size:24px;cursor:pointer}
+    .page{display:none}.page.active{display:block}.section{padding:96px 0}.container{width:min(1180px,92vw);margin:auto}.eyebrow{color:var(--gold);font-weight:900;text-transform:uppercase;letter-spacing:.18em;font-size:.76rem;margin-bottom:12px}.title{font-family:Cinzel,serif;font-size:clamp(2rem,5vw,3.6rem);line-height:1.1;margin-bottom:18px}.lead{font-size:1.08rem;color:var(--muted);max-width:730px}
+    .hero{min-height:100vh;padding:140px 0 80px;display:flex;align-items:center;position:relative;background:radial-gradient(circle at 78% 20%,rgba(201,162,39,.15),transparent 30%),radial-gradient(circle at 12% 72%,rgba(15,39,66,.08),transparent 35%),linear-gradient(180deg,#fff,#fbfaf7);overflow:hidden}
+    .hero:before{content:"";position:absolute;width:620px;height:620px;border:1px solid rgba(201,162,39,.18);border-radius:42%;right:-160px;top:100px;animation:float 9s ease-in-out infinite}.hero:after{content:"";position:absolute;width:420px;height:420px;background:rgba(15,39,66,.035);border-radius:50%;left:-120px;bottom:60px;animation:float 11s ease-in-out infinite reverse}@keyframes float{50%{transform:translateY(-22px) rotate(7deg)}}
+    .hero-content{position:relative;z-index:1;max-width:860px}.hero h1{font-family:Cinzel,serif;font-size:clamp(3rem,8vw,6.5rem);line-height:.98;letter-spacing:-.055em;margin-bottom:24px}.hero h1 span{color:var(--gold)}.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:42px;max-width:780px}.stat{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)}.stat strong{font-size:2rem;display:block;color:var(--ink)}.stat small{color:var(--muted);font-weight:800}
+    .grid{display:grid;gap:22px}.services{grid-template-columns:repeat(3,1fr);margin-top:42px}.card{background:white;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:0 12px 36px rgba(17,19,24,.045);transition:.25s}.card:hover{transform:translateY(-7px);border-color:rgba(201,162,39,.65);box-shadow:var(--shadow2)}.icon{width:48px;height:48px;border-radius:16px;background:#fbf4df;color:var(--gold);display:grid;place-items:center;font-size:1.4rem;margin-bottom:20px}.card h3{font-size:1.12rem;margin-bottom:10px}.card p{color:var(--muted);font-size:.95rem}.mini-btn{margin-top:22px;display:inline-flex;color:var(--gold);font-weight:900;font-size:.9rem}
+    .soft{background:linear-gradient(180deg,#fbfaf7,#fff)}.features{grid-template-columns:repeat(2,1fr);margin-top:38px}.feature{display:flex;gap:18px}.feature .icon{flex:0 0 48px}.reviews,.pricing{grid-template-columns:repeat(4,1fr);margin-top:40px}.stars{color:var(--gold);letter-spacing:2px;margin-bottom:16px}.price{font-family:Cinzel,serif;font-size:1.65rem;margin-bottom:12px}.badge{display:inline-block;background:#fbf4df;color:var(--gold-dark);padding:7px 12px;border-radius:999px;font-size:.75rem;font-weight:900;margin-bottom:15px}.popular{border:1px solid rgba(201,162,39,.75);transform:translateY(-10px)}.pricing .card:hover{transform:scale(1.035)}
+    .cta{border-radius:34px;padding:58px;background:radial-gradient(circle at 50% 0,rgba(201,162,39,.18),transparent 42%),#fbfaf7;border:1px solid var(--line);text-align:center}.cta .lead{margin:0 auto 28px}.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .contact-hero{padding-top:145px;background:linear-gradient(180deg,#fbfaf7,#fff)}.contact-pills{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.pill{background:white;border:1px solid var(--line);padding:13px 17px;border-radius:999px;font-weight:800;box-shadow:0 8px 26px rgba(17,19,24,.04)}
+    form{margin-top:38px;background:white;border:1px solid var(--line);border-radius:34px;padding:34px;box-shadow:var(--shadow)}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.field label{display:block;font-weight:800;font-size:.86rem;margin-bottom:7px}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:#fbfbfa;border-radius:16px;padding:15px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,162,39,.12)}.full{grid-column:1/-1}.chips{display:flex;gap:10px;flex-wrap:wrap}.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:12px 17px;font-weight:800;cursor:pointer}.chip.active{background:#fbf4df;border-color:var(--gold);color:var(--gold-dark)}.success{display:none;margin-top:18px;padding:18px;background:#fbf4df;border:1px solid rgba(201,162,39,.4);border-radius:18px;color:#5d4810;font-weight:900}.success.show{display:block;animation:fadeUp .4s}.check{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--gold);color:white;margin-right:8px}
+    .faq{max-width:860px;margin-top:40px}.faq-item{border:1px solid var(--line);border-radius:20px;margin-bottom:12px;background:white;overflow:hidden}.faq-q{width:100%;background:white;border:0;padding:20px;text-align:left;font-weight:900;cursor:pointer;display:flex;justify-content:space-between}.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.faq-a p{padding:0 20px 20px;color:var(--muted)}.faq-item.open .faq-a{max-height:140px}.final-book{text-align:center}.final-book svg{width:62px;height:62px;color:var(--gold)}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}.bottom-tabs{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:75;background:rgba(255,255,255,.88);backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:999px;padding:8px;display:flex;gap:8px;box-shadow:var(--shadow)}.tab{border:0;background:transparent;border-radius:999px;padding:13px 22px;font-weight:900;cursor:pointer}.tab.active{background:var(--ink);color:white}
+    @media(max-width:980px){.nav-links,.nav-cta{display:none}.hamb{display:block}.services,.reviews,.pricing{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:1fr}.popular{transform:none}}
+    @media(max-width:650px){.section{padding:72px 0}.hero{padding-top:125px}.services,.features,.reviews,.pricing,.form-grid{grid-template-columns:1fr}.hero h1{font-size:3rem}.cta{padding:38px 22px}.stats{gap:10px}.navbar{height:70px}.brand{font-size:.95rem}form{padding:22px;border-radius:24px}.bottom-tabs{width:92vw;justify-content:center}.tab{flex:1;padding:12px 8px}.nav-inner{width:92vw}}
+  </style>
+</head>
+<body>
+  <div class="loader" id="loader"><div class="loader-card">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M8 52c18-17 32-25 55-19 9 2 18 0 29-8-8 15-21 23-37 24l17 12c-22 0-37-3-49-12 7 12 18 20 35 25-22 1-39-6-50-22z"/><path d="M55 34l16-17-4 18"/><path d="M42 45l-17 31"/></svg>
+    <h1>Black Eagle Detailing Services</h1><p>Precision. Power. Perfection.</p><div class="progress"><span></span></div>
+  </div></div>
+  <nav class="navbar"><div class="nav-inner">
+    <a href="#home" class="brand nav-home"><svg viewBox="0 0 100 100"><path fill="currentColor" d="M8 52c18-17 32-25 55-19 9 2 18 0 29-8-8 15-21 23-37 24l17 12c-22 0-37-3-49-12 7 12 18 20 35 25-22 1-39-6-50-22z"/></svg><span>Black Eagle</span></a>
+    <div class="nav-links"><a href="#home">Home</a><a href="#services">Services</a><a href="#why">Why Us</a><a href="#pricing">Pricing</a><a href="#contactTop" class="go-contact">Contact</a></div>
+    <a href="#contactTop" class="btn btn-gold nav-cta go-contact">Get a Free Quote</a><button class="hamb" id="hamb"><span></span><span></span><span></span></button>
+  </div></nav>
+  <aside class="mobile-menu" id="mobileMenu"><button class="close" id="closeMenu">&times;</button><br><br><a href="#home">Home</a><a href="#services">Services</a><a href="#why">Why Us</a><a href="#pricing">Pricing</a><a href="#contactTop" class="go-contact">Contact</a><a href="#contactTop" class="go-contact">Get a Free Quote</a></aside>
+
+  <main id="homePage" class="page active">
+    <section id="home" class="hero"><div class="container hero-content reveal"><div class="eyebrow">Premium detailing and cleaning</div><h1>We Make Everything Look <span>Brand New.</span></h1><p class="lead">Professional detailing and cleaning services for your car, home, and office — done right, every time.</p><div class="hero-actions"><a href="#contactTop" class="btn btn-gold go-contact">Book a Service</a><a href="#services" class="btn btn-ghost">See Our Services</a></div><div class="stats"><div class="stat"><strong data-target="10" data-suffix="+">0</strong><small>Services Offered</small></div><div class="stat"><strong data-target="100" data-suffix="%">0</strong><small>Satisfaction Rate</small></div><div class="stat"><strong data-target="24" data-suffix="-Hour">0</strong><small>Quote Response</small></div></div></div></section>
+    <section id="services" class="section"><div class="container"><div class="reveal"><div class="eyebrow">Services</div><h2 class="title">What We Clean</h2><p class="lead">From vehicles to homes and commercial spaces, Black Eagle brings detailed, professional care to every surface.</p></div><div class="grid services" id="serviceGrid"></div></div></section>
+    <section id="why" class="section soft"><div class="container"><div class="reveal"><div class="eyebrow">Our standard</div><h2 class="title">The Black Eagle Standard</h2></div><div class="grid features" id="featureGrid"></div></div></section>
+    <section class="section"><div class="container"><div class="reveal"><div class="eyebrow">Reviews</div><h2 class="title">Trusted by Local Customers</h2></div><div class="grid reviews" id="reviewGrid"></div></div></section>
+    <section id="pricing" class="section soft"><div class="container"><div class="reveal"><div class="eyebrow">Pricing</div><h2 class="title">Simple, Transparent Pricing</h2><p class="lead">Not sure which package fits? Contact Abdul for a free custom quote.</p></div><div class="grid pricing" id="pricingGrid"></div></div></section>
+    <section class="section"><div class="container"><div class="cta reveal"><h2 class="title">Ready for a Spotless Space?</h2><p class="lead">Call or message Abdul today — fast response guaranteed.</p><div class="cta-actions"><a class="btn btn-gold" href="tel:8023634578">Call Now: 802-363-4578</a><a class="btn btn-ghost go-contact" href="#contactTop">Send a Message</a></div></div></div></section>
+  </main>
+  <main id="contactPage" class="page">
+    <section id="contactTop" class="section contact-hero"><div class="container"><div class="reveal"><div class="eyebrow">Contact and booking</div><h1 class="title">Book Your Service</h1><p class="lead">Fill out the form below and Abdul will get back to you within 24 hours with a free quote.</p><div class="contact-pills"><a class="pill" href="mailto:abdulrahman2@gmail.com">abdulrahman2@gmail.com</a><a class="pill" href="tel:8023634578">802-363-4578</a></div></div><form id="bookingForm" class="reveal" action="mailto:abdulrahman2@gmail.com" method="post" enctype="text/plain"><div class="form-grid"><div class="field"><label>First Name</label><input name="First Name" required></div><div class="field"><label>Last Name</label><input name="Last Name" required></div><div class="field"><label>Email Address</label><input name="Email" type="email" required></div><div class="field"><label>Phone Number</label><input name="Phone" type="tel" required></div><div class="field full"><label>Service Type</label><select name="Service Type" required id="serviceSelect"></select></div><div class="field full"><label>Location / Address</label><input name="Location" required></div><div class="field"><label>Date Requested</label><input name="Date Requested" type="date" required></div><div class="field"><label>Preferred Time</label><input type="hidden" name="Preferred Time" id="preferredTime"><div class="chips" data-chip-group="preferredTime"><button type="button" class="chip">Morning</button><button type="button" class="chip">Afternoon</button><button type="button" class="chip">Evening</button></div></div><div class="field full"><label>Budget Range</label><input type="hidden" name="Budget Range" id="budgetRange"><div class="chips" data-chip-group="budgetRange"><button type="button" class="chip">Under $100</button><button type="button" class="chip">$100–$200</button><button type="button" class="chip">$200–$400</button><button type="button" class="chip">$400+</button></div></div><div class="field full"><label>Additional Notes</label><textarea name="Additional Notes" rows="5"></textarea></div></div><button class="btn btn-gold" style="margin-top:22px;width:100%">Send My Request</button><div class="success" id="success"><span class="check">✓</span>Your request is ready. If your email app opens, press send. Abdul will contact you within 24 hours.</div></form></div></section>
+    <section class="section soft"><div class="container"><div class="reveal"><div class="eyebrow">Questions</div><h2 class="title">FAQ</h2></div><div class="faq" id="faq"></div></div></section>
+    <section class="section"><div class="container final-book reveal"><svg viewBox="0 0 100 100"><path fill="currentColor" d="M8 52c18-17 32-25 55-19 9 2 18 0 29-8-8 15-21 23-37 24l17 12c-22 0-37-3-49-12 7 12 18 20 35 25-22 1-39-6-50-22z"/></svg><h2 class="title">Don’t Wait — Book Today</h2><div class="cta-actions"><a class="btn btn-gold" href="tel:8023634578">802-363-4578</a><a class="btn btn-ghost" href="mailto:abdulrahman2@gmail.com">abdulrahman2@gmail.com</a></div></div></section>
+  </main>
+  <div class="bottom-tabs"><button class="tab active" data-page="homePage">Home</button><button class="tab" data-page="contactPage">Contact & Booking</button></div>
+  <script>
+    const services=[['✦','Car Detailing','Interior & exterior deep clean, wax, polish, paint protection'],['◈','Interior Car Cleaning','Seats, carpets, dashboard, odor removal'],['◇','Exterior Car Wash & Polish','Hand wash, clay bar, tire shine, window clean'],['⌂','House Cleaning','Full home deep clean, kitchens, bathrooms, bedrooms'],['▣','Office / Commercial Cleaning','Workspaces, lobbies, restrooms, floors'],['↗','Move-In / Move-Out Cleaning','Thorough top-to-bottom clean for new or vacated spaces'],['◌','Upholstery Cleaning','Sofas, chairs, car seats, stain and odor removal'],['▥','Window Cleaning','Streak-free residential and commercial window cleaning'],['⌁','Post-Construction Cleaning','Dust, debris, and residue removal after renovations'],['⟳','Recurring Maintenance Plans','Weekly, bi-weekly, or monthly scheduled service']];
+    const features=[['✦','Trained & Vetted Professionals','Reliable service from careful, professional cleaners who respect your property.'],['♻','Eco-Friendly Products','Quality cleaning products selected to be effective, responsible, and safe when used properly.'],['✓','100% Satisfaction Guarantee','If something is not right, Abdul makes it right with prompt follow-up.'],['◷','Flexible Scheduling','Book mornings, afternoons, evenings, and custom appointments when available.'],['▦','Residential & Commercial','Professional cleaning for cars, homes, offices, and business spaces.'],['★','Locally Owned & Operated by Abdul Voluspal','Personal service, local accountability, and pride in every job.']];
+    const reviews=[['Kevin M.','Black Eagle did an incredible job on my truck. Looks better than the day I bought it!'],['Tanya R.','They cleaned my office top to bottom and it\'s never looked this good. Highly recommend.'],['Marcus D.','Did a move-out clean for me last minute. Absolute lifesavers. Got my deposit back!'],['Priya S.','The house deep clean was worth every penny. Detailed, thorough, and professional.']];
+    const prices=[['Basic Clean','$79','Exterior wash, interior vacuum, window wipe','','Basic Clean'],['Standard Detail','$149','Full interior + exterior detail, tire shine','Most Popular','Standard Detail'],['Premium Package','$249','Deep clean, clay bar, wax, odor treatment, upholstery','','Premium Package'],['Home / Office Clean','Starting at $120','Custom quote based on size and scope','','Home / Office Clean']];
+    serviceGrid.innerHTML=services.map(s=>`<div class="card reveal"><div class="icon">${s[0]}</div><h3>${s[1]}</h3><p>${s[2]}</p><a href="#contactTop" class="mini-btn go-contact">Book Now →</a></div>`).join('');
+    featureGrid.innerHTML=features.map(f=>`<div class="card feature reveal"><div class="icon">${f[0]}</div><div><h3>${f[1]}</h3><p>${f[2]}</p></div></div>`).join('');
+    reviewGrid.innerHTML=reviews.map(r=>`<div class="card reveal"><div class="stars">★★★★★</div><h3>${r[0]}</h3><p><em>"${r[1]}"</em></p></div>`).join('');
+    pricingGrid.innerHTML=prices.map(p=>`<div class="card reveal ${p[3]?'popular':''}">${p[3]?`<span class="badge">${p[3]}</span>`:''}<h3>${p[0]}</h3><div class="price">${p[1]}</div><p>${p[2]}</p><button type="button" class="btn btn-gold choose-package" data-package="${p[4]}" style="width:100%;margin-top:22px">Choose This Package</button></div>`).join('');
+    serviceSelect.innerHTML='<option value="">Select a service</option>'+services.map(s=>`<option>${s[1]}</option>`).join('');
+    faq.innerHTML=[['Do you bring your own supplies?','Yes. Black Eagle can bring professional supplies and equipment. If you prefer specific products, mention it in your request.'],['How long does a full detail take?','Most full details take a few hours depending on vehicle size and condition. Abdul will confirm timing with your quote.'],['Do you offer same-day service?','Same-day service may be available depending on the schedule. Call for the fastest response.'],['Are your products safe for kids and pets?','Products are selected with safety in mind and used properly. Share any sensitivities before service.'],['How do I pay?','Payment details can be confirmed when Abdul follows up with your quote.'],['Do you service my area?','Send your address or general location and Abdul will confirm availability.']].map(x=>`<div class="faq-item reveal"><button class="faq-q">${x[0]}<span>+</span></button><div class="faq-a"><p>${x[1]}</p></div></div>`).join('');
+    setTimeout(()=>loader.classList.add('hide'),2500);
+    const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.13});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+    let counted=false;function countStats(){if(counted)return;counted=true;document.querySelectorAll('[data-target]').forEach(el=>{let target=+el.dataset.target,suffix=el.dataset.suffix||'',n=0,step=Math.max(1,Math.ceil(target/60));let t=setInterval(()=>{n+=step;if(n>=target){n=target;clearInterval(t)}el.textContent=n+suffix},24)})}
+    new IntersectionObserver(e=>{if(e[0].isIntersecting)countStats()},{threshold:.5}).observe(document.querySelector('.stats'));
+    function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.page===id));window.scrollTo({top:0,behavior:'smooth'});setTimeout(()=>document.querySelectorAll('.reveal').forEach(el=>{if(el.getBoundingClientRect().top<innerHeight)el.classList.add('visible')}),80)}
+    document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>showPage(t.dataset.page));
+    document.addEventListener('click',e=>{const link=e.target.closest('.go-contact');if(link){e.preventDefault();showPage('contactPage');setTimeout(()=>document.getElementById('contactTop').scrollIntoView({behavior:'smooth'}),130)}});
+    document.addEventListener('click',e=>{const pkg=e.target.closest('.choose-package');if(pkg){showPage('contactPage');setTimeout(()=>{document.getElementById('contactTop').scrollIntoView({behavior:'smooth'});const notes=document.querySelector('textarea');if(notes && !notes.value.includes(pkg.dataset.package)) notes.value=`Interested in the ${pkg.dataset.package} package. `+notes.value;},150)}});
+    hamb.onclick=()=>mobileMenu.classList.add('open');closeMenu.onclick=()=>mobileMenu.classList.remove('open');mobileMenu.addEventListener('click',e=>{if(e.target.tagName==='A')mobileMenu.classList.remove('open')});
+    document.addEventListener('click',e=>{const q=e.target.closest('.faq-q');if(q)q.parentElement.classList.toggle('open')});
+    document.querySelectorAll('[data-chip-group]').forEach(g=>g.addEventListener('click',e=>{if(e.target.classList.contains('chip')){g.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));e.target.classList.add('active');const hidden=document.getElementById(g.dataset.chipGroup);if(hidden)hidden.value=e.target.textContent.trim();}}));
+    bookingForm.addEventListener('submit',async e=>{
+      e.preventDefault();
+      const data=new FormData(bookingForm);
+      const configuredEndpoint=bookingForm.dataset.endpoint;
+      if(configuredEndpoint){
+        try{
+          const res=await fetch(configuredEndpoint,{method:'POST',body:data,headers:{Accept:'application/json'}});
+          if(res.ok){success.innerHTML='<span class="check">✓</span>Your request was sent. Abdul will contact you within 24 hours.';success.classList.add('show');bookingForm.reset();document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));return;}
+        }catch(err){}
+      }
+      const lines=[];
+      data.forEach((value,key)=>{lines.push(`${key}: ${value}`)});
+      const subject=encodeURIComponent('New Black Eagle Detailing Service Request');
+      const body=encodeURIComponent(lines.join('\n'));
+      window.location.href=`mailto:abdulrahman2@gmail.com?subject=${subject}&body=${body}`;
+      success.classList.add('show');
+      bookingForm.scrollIntoView({behavior:'smooth',block:'end'});
+    });
+  </script>
+</body>
+</html>
